@@ -1,16 +1,33 @@
-# This is a sample Python script.
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+def render(board_width, board_height, shots):
+    # Creates our horizontal board
+    header = "+" + "-" * board_width + "+"
+    print(header)
 
+    shot_sets = set(shots)
+    for y in range(board_height):
+        row = []
+        # Creates our vertical board
+        for x in range(board_width):
+            if (x,y) in shot_sets:
+                ch = "X"
+            else:
+                ch = " "
+            row.append(ch)
+        print("|" + "".join(row) + "|")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    print(header)
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    shots = []
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    while True:
+        inp = input("Where do you want to shoot?\n")
+        # TODO: Deal with invalid input
+        xstr, ystr = inp.split(",")
+        x = int(xstr)
+        y = int(ystr)
+
+        shots.append((x, y))
+        render(10, 10, shots)
+
